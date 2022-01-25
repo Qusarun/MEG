@@ -5,11 +5,11 @@
 #include <stdio.h>
 #include <string.h>
 
-int gen_num() {
+int gen_num(void) {
         return rand() % 999 + 1;
 }
 
-char gen_op() {
+char gen_op(void) {
         int i = rand() % 4;
         switch (i) {
                 case 0: return '+';
@@ -29,17 +29,16 @@ char* get_input(void) {
         return s;
 }
 
-void equation() {
+void equation(void) {
         int i = gen_num(), j = gen_num();
         char c = gen_op();
         int result = c == '+'? i + j : c == '-'? i - j : c == '*'? i * j : i / j;
         printf("%d %c %d = ", i, c, j);
         char* s = get_input();
-        if (result == atoi(s)) {
+        if (result == atoi(s))
                 printf("Correct.\n");
-        } else {
+        else
                 printf("Wrong. %d %c %d = %d.\n", i, c, j, result);
-        }
 }
 
 int main(void) {
