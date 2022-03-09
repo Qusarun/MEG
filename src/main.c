@@ -21,27 +21,7 @@ char gen_op(void) {
         printf("ok but like how?\n");
 }
 
-char* get_input(void) {
-        char* s = malloc(sizeof(char) * 16);
-        fgets(s, 16, stdin);
-        s[strcspn(s, "\n")] = 0;
-        if (!strcmp(s, "exit")) exit(0);
-        return s;
-}
-
-void equation(void) {
-        int i = gen_num(), j = gen_num();
-        char c = gen_op();
-        int result = c == '+'? i + j : c == '-'? i - j : c == '*'? i * j : i / j;
-        printf("%d %c %d = ", i, c, j);
-        char* s = get_input();
-        if (result == atoi(s))
-                printf("Correct.\n");
-        else
-                printf("Wrong. %d %c %d = %d.\n", i, c, j, result);
-}
-
 int main(void) {
         srand(time(0));
-        for (;;) equation();
+        for (int i = 0; i < 25; i++) printf("%d %c %d = ", gen_num(), gen_op(), gen_num());
 }
